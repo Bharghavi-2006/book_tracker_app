@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Book Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-background">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required />
+            <input type="password" id="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); //prevents the browser from doing the default form behavior which is reloading the page
+            console.log("Login form submitted"); 
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const res = await fetch('/api/auth/login', { //fetch() built-in broswer function to make networ requests
+                method: 'POST', //making a post request to login API 
+                headers: { 'Content-Type': 'application/json' }, //tells backend we're sending JSON data
+                body: JSON.stringify({ username, password }) //converts JS object into JSON string and sends it in the request body
+            });
+            const data = await res.json(); //converts response which comes back in JSON format into a usable JS object
+            if (res.ok) { //checks if login was successful
+                localStorage.setItem('token', data.token); //store token in localStorage so we can use it in future requests
+                window.location.href = 'dashboard.html'; //redirect user to dashboard
+            } else {
+                alert(data); //show alert message with error message
+            }
+        });
+    </script>
+    
+</body>
+</html>

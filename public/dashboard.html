@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dashboard-background">
+    <div class="dashboard-container">
+        <h1>Your Book Tracker</h1>
+        <button onclick="logout()" style="float: right; background-color: blue;">Logout</button>
+        <div>
+            <label>Filter by Genre:</label>
+            <input type="text" id="genreFilter" placeholder="e.g. Fantasy" />
+            <label>
+                <input type="checkbox" id="completedFilter" />
+                Completed Only
+            </label>
+            <button onclick="fetchBooks()">Apply Filters</button>
+        </div>
+        <div class="add-book-container">
+           <h3>Add a Book</h3>
+           <form id="add-book-form">
+              <input type="text" id="title" placeholder="Book Title" required />
+              <input type="text" id="genre" placeholder="Genre" required />
+              <input type="number" id="totalPages" placeholder="Total Pages" required />
+              <input type="number" id="pagesRead" placeholder="Pages Read" required />
+              <input type="number" id="rating" placeholder="Rating (1–5)" min="1" max="5" />
+              <textarea id="remarks" placeholder="Remarks (optional)"></textarea>
+              <button type="submit">Add Book</button>
+           </form>
+        </div>
+
+
+        <div id="book-list"></div>
+    </div>  
+    
+    <script src="dashboard.js"></script>
+</body>
+</html>

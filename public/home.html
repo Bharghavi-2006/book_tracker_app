@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Book Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class ="dashboard-background">
+    <div class="dashboard-container" style="text-align: center;">
+        <h1>Welcome to Book Tracker</h1>
+        <p>Track your reading, progress, and thoughts.</p>
+        <button onclick="window.location.href='login.html'">Login</button>
+        <button onclick="window.location.href='signup.html'">Signup</button>
+    </div>
+</body>
+
+<script>
+    if (localStorage.getItem('token')) {
+        window.location.href = 'dashboard.html';
+    } //if user already logged in before, they dont need to log in again
+</script>
+</html>
