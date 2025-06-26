@@ -9,7 +9,7 @@
 <body class="dashboard-background">
     <div class="dashboard-container">
         <h1>Your Book Tracker</h1>
-        <button onclick="logout()" style="float: right; background-color: blue;">Logout</button>
+        <button class="logout" onclick="logout()" style="float: right; background-color: blue;">Logout</button>
         <div>
             <label>Filter by Genre:</label>
             <input type="text" id="genreFilter" placeholder="e.g. Fantasy" />
@@ -17,11 +17,11 @@
                 <input type="checkbox" id="completedFilter" />
                 Completed Only
             </label>
-            <button onclick="fetchBooks()">Apply Filters</button>
+            <button class="logout" onclick="fetchBooks()">Apply Filters</button>
         </div>
         <div class="add-book-container">
            <h3>Add a Book</h3>
-           <form id="add-book-form">
+           <form id="add-book-form" class="form">
               <input type="text" id="title" placeholder="Book Title" required />
               <input type="text" id="genre" placeholder="Genre" required />
               <input type="number" id="totalPages" placeholder="Total Pages" required />
@@ -33,7 +33,21 @@
         </div>
 
 
-        <div id="book-list"></div>
+        <div id="book-list" class="book-list"></div>
+        <div id="update-modal" class="update-form container" style="display:none; border:1px solid #ccc; padding: 20px; margin-top: 20px;">
+           <h3>Update Progress</h3>
+           <form id="update-form">
+              <input type="number" id="update-pagesRead" placeholder="Pages read" required />
+              <input type="number" id="update-totalPages" placeholder="Total pages" required />
+              <input type="number" id="update-rating" placeholder="Rating (1-5)" min="1" max="5" />
+              <input type="text" id="update-remarks" placeholder="Remarks" />
+              <input type="hidden" id="update-bookId" />
+              <button type="submit">Update</button>
+              <button type="button" onclick="closeUpdateForm()">Cancel</button>
+              <p id="update-error" style="color: red;"></p>
+           </form>
+        </div>
+
     </div>  
     
     <script src="dashboard.js"></script>

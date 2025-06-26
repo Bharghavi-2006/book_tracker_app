@@ -55,5 +55,3 @@ The frontend should store this token and send it on every protected request */
 
 module.exports = router;
 //exports the module so that we can use it in other files
-
-
